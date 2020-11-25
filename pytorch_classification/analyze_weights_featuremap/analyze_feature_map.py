@@ -6,22 +6,22 @@ import numpy as np
 from PIL import Image
 from torchvision import transforms
 
-data_transform = transforms.Compose(
-    [transforms.Resize((224, 224)),
-     transforms.ToTensor(),
-     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-
 # data_transform = transforms.Compose(
-#     [transforms.Resize(256),
-#      transforms.CenterCrop(224),
+#     [transforms.Resize((224, 224)),
 #      transforms.ToTensor(),
-#      transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])])
+#      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
+data_transform = transforms.Compose(
+    [transforms.Resize(256),
+     transforms.CenterCrop(224),
+     transforms.ToTensor(),
+     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])])
 
 # create model
-model = AlexNet(num_classes=5)
-# model = resnet34(num_classes=5)
+# model = AlexNet(num_classes=5)
+model = resnet34(num_classes=5)
 # load model weights
-model_weight_path = "./AlexNet.pth"  # "./resNet34.pth"
+model_weight_path = "./resNet34.pth"  # "./AlexNet.pth"
 model.load_state_dict(torch.load(model_weight_path))
 print(model)
 
@@ -42,9 +42,11 @@ for feature_map in out_put:
 
     # show top 12 feature maps
     plt.figure()
-    for i in range(12):
-        ax = plt.subplot(3, 4, i+1)
+    for i in range(30):
+        ax = plt.subplot(5, 6, i+1)
         # [H, W, C]
         plt.imshow(im[:, :, i], cmap='gray')
     plt.show()
+
+
 
