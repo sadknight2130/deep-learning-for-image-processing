@@ -46,7 +46,7 @@ def main():
         "val": transforms.Compose([transforms.ToTensor()])
     }
 
-    VOC_root = "./"
+    VOC_root = "../../data_set/"
     # check voc root
     if os.path.exists(os.path.join(VOC_root, "VOCdevkit")) is False:
         raise FileNotFoundError("VOCdevkit dose not in path:'{}'.".format(VOC_root))
@@ -54,7 +54,7 @@ def main():
     # load train data set
     train_data_set = VOC2012DataSet(VOC_root, data_transform["train"], True)
     # 注意这里的collate_fn是自定义的，因为读取的数据包括image和targets，不能直接使用默认的方法合成batch
-    batch_size = 8
+    batch_size = 4
     nw = min([os.cpu_count(), batch_size if batch_size > 1 else 0, 8])  # number of workers
     print('Using %g dataloader workers' % nw)
     train_data_loader = torch.utils.data.DataLoader(train_data_set,

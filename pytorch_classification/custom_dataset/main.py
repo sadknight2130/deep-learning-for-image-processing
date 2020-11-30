@@ -8,7 +8,7 @@ from utils import read_split_data, plot_data_loader_image
 
 # http://download.tensorflow.org/example_images/flower_photos.tgz
 root = "/home/wz/my_github/data_set/flower_data/flower_photos"  # 数据集所在根目录
-
+root = "C:\\Users\\ytp\\Desktop\\deep learning\\data\\flower_photos"
 
 def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

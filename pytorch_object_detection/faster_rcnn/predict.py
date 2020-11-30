@@ -43,7 +43,7 @@ print(device)
 model = create_model(num_classes=21)
 
 # load train weights
-train_weights = "./save_weights/model.pth"
+train_weights = "./save_weights/resNetFpn-model-9.pth"
 model.load_state_dict(torch.load(train_weights)["model"])
 model.to(device)
 
@@ -58,7 +58,8 @@ except Exception as e:
     exit(-1)
 
 # load image
-original_img = Image.open("./test.jpg")
+test_image_path = "../../data_set/fasterRCNN_testphoto/2007_005262.jpg"
+original_img = Image.open(test_image_path)
 
 # from pil image to tensor, do not normalize image
 data_transform = transforms.Compose([transforms.ToTensor()])
